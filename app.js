@@ -2,10 +2,16 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyparser = require('body-parser');
+const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
+mongoose.connect('mongodb://orean:' + process.env.MONGO_ATLAS_PW + '@node-rest-shop-shard-00-00-qqy8u.mongodb.net:27017,node-rest-shop-shard-00-01-qqy8u.mongodb.net:27017,node-rest-shop-shard-00-02-qqy8u.mongodb.net:27017/test?ssl=true&replicaSet=node-rest-shop-shard-0&authSource=admin&retryWrites=true', 
+    {
+        useMongoClient: true
+    }
+)
 app.use(morgan('dev'));
 app.use(bodyparser.urlencoded({extended: false}));
 app.use(bodyparser.json());
