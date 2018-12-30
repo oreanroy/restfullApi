@@ -7,11 +7,36 @@ const mongoose = require('mongoose');
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
-mongoose.connect('mongodb://orean:' + process.env.MONGO_ATLAS_PW + '@node-rest-shop-shard-00-00-qqy8u.mongodb.net:27017,node-rest-shop-shard-00-01-qqy8u.mongodb.net:27017,node-rest-shop-shard-00-02-qqy8u.mongodb.net:27017/test?ssl=true&replicaSet=node-rest-shop-shard-0&authSource=admin&retryWrites=true', 
-    {
-        useMongoClient: true
+//mongoose.connect('mongodb://orean:' + 
+//                process.env.MONGO_ATLAS_PW + 
+//                '@node-rest-shop-shard-00-00-qqy8u.mongodb.net:27017,node-rest-shop-shard-00-01-qqy8u.mongodb.net:27017,node-rest-shop-shard-00-02-qqy8u.mongodb.net:27017/test?ssl=true&replicaSet=node-rest-shop-shard-0&authSource=admin&retryWrites=true', 
+//    {
+//        useMongoClient: true
+//    }
+//)
+
+ var url = 'mongodb://orean:' + 
+ process.env.MONGO_ATLAS_PW + 
+ '@node-rest-shop-shard-00-00-qqy8u.mongodb.net:27017,node-rest-shop-shard-00-01-qqy8u.mongodb.net:27017,node-rest-shop-shard-00-02-qqy8u.mongodb.net:27017/test?ssl=true&replicaSet=node-rest-shop-shard-0&authSource=admin&retryWrites=true'
+
+
+
+mongoose.connect(
+    url, 
+        {
+            auth: {
+                user: 'orean',
+                password: '2437oreanRahul'
+            },
+            useNewUrlParser: true
+        },
+    function(err, client) {
+        if (err) {
+            console.log(err);
+        }
+    console.log('connected!!!');
     }
-)
+);
 app.use(morgan('dev'));
 app.use(bodyparser.urlencoded({extended: false}));
 app.use(bodyparser.json());

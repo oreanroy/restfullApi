@@ -44,7 +44,6 @@ router.get('/:productId', (req, res, next) => {
             console.log(err);
             res.status(500).json({error: err});
         });
-    next();
 });
 
 router.patch('/:productId', (req, res, next) => {
