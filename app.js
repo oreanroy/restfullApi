@@ -37,6 +37,7 @@ mongoose.connect(
     console.log('connected!!!');
     }
 );
+mongoose.Promise = global.Promise;
 app.use(morgan('dev'));
 app.use(bodyparser.urlencoded({extended: false}));
 app.use(bodyparser.json());
