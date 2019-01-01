@@ -66,7 +66,6 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', upload.single('productImage'), (req, res, next) => {
-    console.log(req.file);
     const product = new Product({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
@@ -79,7 +78,7 @@ router.post('/', upload.single('productImage'), (req, res, next) => {
             console.log(result);
             console.log("succesFull");
             res.status(201).json({
-                message: "Handling POST requests to /products",
+                message: "created product successfully",
                 createdProduct: {
                     name: result.name,
                     price: result.price,
