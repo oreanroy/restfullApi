@@ -27,7 +27,7 @@ mongoose.connect(
         {
             auth: {
                 user: 'orean',
-                password: '2437oreanRahul'
+                password: '<your password>'
             },
             useNewUrlParser: true
         },
